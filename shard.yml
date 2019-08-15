@@ -7,6 +7,12 @@ authors:
 targets:
   word_ladder:
     main: src/word_ladder.cr
+  api:
+    main: src/api.cr
+
+dependencies:
+  kemal:
+    github: kemalcr/kemal
 
 crystal: 0.30.0
 

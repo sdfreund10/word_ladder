@@ -25,7 +25,7 @@ module WordLadder
     def paths
       tree = Tree.new(start_word, end_word)
       tree.build.trim
-      return Array(String).new if tree.dead_end?
+      return Array(Array(String)).new if tree.dead_end?
 
       levels = tree.levels.map { |lvl| lvl.words }
       paths = [levels.pop]
