@@ -4,8 +4,8 @@ require "kemal"
 
 CACHE = Cache.new
 
-get "/" do
-  "Word Ladder Version #{WordLadder::VERSION}"
+get "/" do |request|
+  send_file request, "public/index.html", "text/html"
 end
 
 before_get "/paths/new" do

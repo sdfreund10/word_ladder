@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.8.0"
+  },
+  "name": "word_ladder",
+  "version": "1.0.0",
+  "repository": "git@github.com:sdfreund10/word_ladder.git",
+  "author": "Steve Freund <sdfreund10@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+      "build": "webpack"
+  }
+}
