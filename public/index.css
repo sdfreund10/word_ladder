@@ -1,0 +1,81 @@
+body {
+  font-family: sans-serif;
+}
+
+div.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px 5px;
+  font-size: 16px;
+}
+
+div.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+div.title {
+  font-size: 24px;
+}
+
+div.description {
+  16px;
+}
+
+hr {
+  width: 100%;
+}
+
+div.input-group {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0 3px 0;
+}
+
+div.input-group > label {
+  font-size: 12px;
+  margin: 5px 0;
+}
+
+div.input-group > input {
+  width: 200px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px #eeeeee solid;
+  border-radius: 5px;
+}
+
+div.submit {
+  display: flex;
+  justify-content: center;
+}
+
+div.submit > button {
+  font-size: 16px;
+  padding: 5px 50px;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+div.results-container {
+  display: flex;
+}
+
+div.path {
+  display: flex;
+  flex-direction: column;
+  padding: 0 30px;
+  border-left: 1px solid black;
+}
+div.path:first-child {
+  border-left: none
+}
+
+div.path > span.word {
+  margin: 2px 0;
+}
+
+
