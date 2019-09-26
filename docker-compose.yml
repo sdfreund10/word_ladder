@@ -1,7 +1,16 @@
 version: '3'
+
+volumes:
+  shards:
+  node_modules:
 services:
   web:
     build: .
     ports:
       - "3000:3000"
     tty: true
+    volumes:
+      - ./src/word_ladder:/app/src/word_ladder/
+      - ./public/:/app/public/
+      - shards:/app/.shards/
+      - node_modules:/app/node_modules/
