@@ -7,10 +7,11 @@ services:
   web:
     build: .
     ports:
-      - "3000:3000"
+      - "4000:4000"
     tty: true
     volumes:
       - ./src/word_ladder:/app/src/word_ladder/
+      - ./src/assets:/app/src/assets/
       - ./public/:/app/public/
       - shards:/app/.shards/
       - node_modules:/app/node_modules/

@@ -31,5 +31,6 @@ get "/paths/new" do |request|
   end
 end
 
+Kemal.config.port = 4000
 Kemal.run
 

@@ -1,16 +1,27 @@
 import { html, Fragment } from 'htm/preact'
 
-export default function PathsContainer ({ paths }) {
-  const pathHtml = paths.map(path => (
-    html`
+import Path from './path';
+
+export default function PathsContainer ({ paths, loading }) {
+  if (loading) {
+    return html`
+      <div className="results-container">
+        <div class="loader"></div>
+      </div>
+    `;
+  }
+
+  const pathsHtml = paths.map(path => {
+    return html`
       <div className="path">
-        ${path.map(word => html`<span className="word">${word}</span>`)}
+        <${Path} path=${path} />
       </div>
     `
-  ))
+  });
+
   return html`
     <div className="results-container">
-      ${pathHtml}
+      ${pathsHtml}
     </div>
   `
 };

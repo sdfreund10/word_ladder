@@ -9,7 +9,7 @@ export default function Form (props) {
     onSubmit
   } = this.props
   return html`
-    <div>
+    <form onsubmit=${onSubmit}>
       <div className="input-group">
         <label>Start word</label>
         <input
@@ -27,12 +27,10 @@ export default function Form (props) {
         />
       </div>
       <div className="submit">
-        <button
-          onClick=${onSubmit}
-        >
+        <button type="submit">
           Generate
         </button>
       </div>
-    </div>
+    </form>
   `
 };

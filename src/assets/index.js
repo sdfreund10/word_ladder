@@ -7,23 +7,30 @@ import Nav from './nav'
 import PathsContainer from './paths_container'
 import Form from './form'
 
-function getPaths (startWord, endWord, callback) {
-  axios
+function getPaths (startWord, endWord) {
+  return axios
     .get(`/paths/new?start=${startWord}&end=${endWord}`)
-    .then(response => callback(response.data))
 }
 
 function App () {
-  const [startWord, startWordChange] = useState('')
-  const [endWord, endWordChange] = useState('')
-  const [paths, pathsChange] = useState([])
+  const [startWord, startWordChange] = useState('');
+  const [endWord, endWordChange] = useState('');
+  const [paths, pathsChange] = useState([]);
+  const [loading, toggleLoading] = useState(false);
   const onChangeFunction = (stateFunction) => {
     return event => { stateFunction(event.target.value) }
   }
 
+  const onSubmit = function (event) {
+    event.preventDefault();
+    toggleLoading(true);
+    getPaths(startWord, endWord).
+      then(response => pathsChange(response.data)).
+      then(() => toggleLoading(false));
+  }
+
   return html`
     <${Fragment}>
-      <${Nav} />
       <div className="body">
         <div className="title">Word Ladder Solver</div>
         <p className="description">
@@ -36,9 +43,10 @@ function App () {
           onStartWordChange=${onChangeFunction(startWordChange)}
           endWord=${endWord}
           onEndWordChange=${onChangeFunction(endWordChange)}
-          onSubmit=${event => getPaths(startWord, endWord, pathsChange)}
+          onSubmit=${onSubmit}
         }}/>
-        <${PathsContainer} paths=${paths} />
+        <hr />
+        <${PathsContainer} paths=${paths} loading=${loading} />
       </div>
     </${Fragment}>
   `
