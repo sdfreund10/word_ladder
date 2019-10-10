@@ -8,8 +8,8 @@
 #     #btyes                - the bytes in the string,
 #                             used to quickly calculate wether two words are
 #                             anagrams
-#     #connects_to?         - cacluates whether given word is either an anagram
-#                             of or one character change from current word
+#     #connects_to?         - cacluates whether or not given word is one character
+#                             change from current word
 #     #characters_from_word - calculates the number of character changes needed
 #                             to convert given word to current word
 #                             AKA the Hamming distance
@@ -31,7 +31,7 @@ module WordLadder
     end
   
     def connects_to?(word : Word)
-      characters_from_word(word) == 1 || anagram_of?(word)
+      characters_from_word(word) == 1
     end
   
     def characters_from_word(other_word : Word)
@@ -42,7 +42,7 @@ module WordLadder
       end
       diffs
     end
-  
+
     def anagram_of?(other_word : Word)
       sorted_bytes == other_word.sorted_bytes
     end

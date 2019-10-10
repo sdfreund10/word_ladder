@@ -9,10 +9,9 @@ module WordLadder
     end
   
     describe "#connect_to?" do
-      it "returns true if word is 1 char from or anagram of other word" do
+      it "returns true if word is 1 char from other word" do
         subject = Word.new("ruby")
         subject.connects_to?(Word.new("rubs")).should be_true
-        subject.connects_to?(Word.new("bury")).should be_true
         subject.connects_to?(Word.new("bleh")).should be_false
       end
     end

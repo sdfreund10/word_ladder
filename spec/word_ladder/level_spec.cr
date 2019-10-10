@@ -10,13 +10,6 @@ module WordLadder
         subject = level.next_level(words_to_match)
         subject.should eq [words_to_match[0]]
       end
-  
-      it "picks anagrams" do
-        level = Level.new([Word.new("ruby")])
-        words_to_match = [Word.new("bury"), Word.new("hard"), Word.new("that")]
-        subject = level.next_level(words_to_match)
-        subject.should eq [words_to_match[0]]
-      end
     end
   
     describe "#includes?" do
