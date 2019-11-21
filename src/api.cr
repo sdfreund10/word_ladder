@@ -16,15 +16,22 @@ get "/paths/new" do |request|
   query_params = request.params.query
   response = request.response
   response.content_type = "application/json"
-  
   if query_params.has_key?("start") && query_params.has_key?("end")
-    start_word = request.params.query["start"]
-    end_word = request.params.query["end"]
+    start_word = query_params["start"]
+    end_word = query_params["end"]
     cache_key = [start_word, end_word]
     paths = CACHE.pull(cache_key) do
       WordLadder::PathFinder.new(start_word, end_word).paths
     end
-    paths.to_json
+
+    if paths.empty?
+      puts "nothin found!"
+      response.status_code = 406
+      "No valid path between words"
+    else
+      puts "I found a thing!"
+      paths.to_json
+    end
   else
     response.status_code = 406
     "Invalid arguments"

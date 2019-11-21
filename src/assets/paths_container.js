@@ -1,8 +1,8 @@
-import { html, Fragment } from 'htm/preact'
+import { html } from 'htm/preact';
 
 import Path from './path';
 
-export default function PathsContainer ({ paths, loading }) {
+export default function PathsContainer({ paths, loading, error }) {
   if (loading) {
     return html`
       <div className="results-container">
@@ -11,17 +11,23 @@ export default function PathsContainer ({ paths, loading }) {
     `;
   }
 
-  const pathsHtml = paths.map(path => {
+  if (error) {
     return html`
+      <div>
+        ${error}
+      </div>
+    `;
+  }
+
+  const pathsHtml = paths.map((path) => html`
       <div className="path">
         <${Path} path=${path} />
       </div>
-    `
-  });
+    `);
 
   return html`
     <div className="results-container">
       ${pathsHtml}
     </div>
-  `
-};
+  `;
+}

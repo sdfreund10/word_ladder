@@ -1,13 +1,14 @@
-import { html } from 'htm/preact'
+import { html } from 'htm/preact';
 
-export default function Form (props) {
+export default function Form(props) {
   const {
     startWord,
     endWord,
     onStartWordChange,
     onEndWordChange,
-    onSubmit
-  } = this.props
+    onSubmit,
+    loading,
+  } = props;
   return html`
     <form onsubmit=${onSubmit}>
       <div className="input-group">
@@ -16,6 +17,7 @@ export default function Form (props) {
           type="text"
           value=${startWord}
           onChange=${onStartWordChange}
+          disabled=${loading}
         />
       </div>
       <div className="input-group">
@@ -24,13 +26,14 @@ export default function Form (props) {
           type="text"
           value=${endWord}
           onChange=${onEndWordChange}
+          disabled=${loading}
         />
       </div>
       <div className="submit">
-        <button type="submit">
+        <button type="submit" disabled=${loading}>
           Generate
         </button>
       </div>
     </form>
-  `
-};
+  `;
+}
