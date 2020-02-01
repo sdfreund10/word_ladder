@@ -1,5 +1,5 @@
 class Cache
-  CACHE_LIFETIME = 30
+  CACHE_LIFETIME = 60 * 60 * 24 # 1 day
   @value : Hash(Array(String), Array(Array(String)))
   @last_refreshed_at : Int64
 

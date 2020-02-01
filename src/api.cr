@@ -1,6 +1,7 @@
 require "./word_ladder"
 require "./web_util/cache"
 require "kemal"
+require "json"
 
 CACHE = Cache.new
 
@@ -16,25 +17,30 @@ get "/paths/new" do |request|
   query_params = request.params.query
   response = request.response
   response.content_type = "application/json"
-  if query_params.has_key?("start") && query_params.has_key?("end")
-    start_word = query_params["start"]
-    end_word = query_params["end"]
-    cache_key = [start_word, end_word]
-    paths = CACHE.pull(cache_key) do
-      WordLadder::PathFinder.new(start_word, end_word).paths
-    end
 
-    if paths.empty?
-      puts "nothin found!"
-      response.status_code = 406
-      "No valid path between words"
-    else
-      puts "I found a thing!"
-      paths.to_json
-    end
-  else
+  unless query_params.has_key?("start") && query_params.has_key?("end")
     response.status_code = 406
-    "Invalid arguments"
+    next("Invalid arguments")
+  end
+
+  start_word = query_params["start"]
+  end_word = query_params["end"]
+
+  if start_word.size != end_word.size
+    response.status_code = 406
+    next("Invalid arguments")
+  end
+
+  cache_key = [start_word, end_word]
+  paths = CACHE.pull(cache_key) do
+    WordLadder::PathFinder.new(start_word, end_word).paths
+  end
+
+  if paths.empty?
+    response.status_code = 400
+    "No valid path between words"
+  else
+    paths.to_json
   end
 end
 
