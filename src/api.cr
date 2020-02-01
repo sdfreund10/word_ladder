@@ -44,6 +44,7 @@ get "/paths/new" do |request|
   end
 end
 
-Kemal.config.port = 4000
+ENV["PORT"] ||= "4000"
+Kemal.config.port = ENV["PORT"].to_i
 Kemal.run
 
