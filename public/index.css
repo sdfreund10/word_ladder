@@ -46,6 +46,7 @@ p {
 
 .main {
   padding: 0 50px;
+  width: calc(100% - 100px);
   margin: auto;
 }
 
@@ -142,11 +143,11 @@ code {
   margin: 0 10px;
   background-color: rgb(255, 255, 255, 50%);
   white-space: pre;
+  overflow: scroll;
 }
 
 .response code {
   height: 100px;
-  overflow: scroll;
 }
 
 table {

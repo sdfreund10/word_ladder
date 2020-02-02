@@ -37,7 +37,7 @@ export default function Form() {
           <input
             id="start-word-input"
             value=${startWord}
-            disable={loading}
+            disabled=${loading}
             onChange=${({ target: { value } }) => changeStartWord(value)} />
         </div>
         <div className="input-group">
@@ -45,11 +45,11 @@ export default function Form() {
           <input
             id="end-word-input"
             value=${endWord}
-            disable={loading}
+            disabled=${loading}
             onChange=${({ target: { value } }) => changeEndWord(value)} />
         </div>
       </div>
-      <button onClick=${getPaths} disable={loading}>Submit</button>
+      <button onClick=${getPaths} disabled=${loading}>Submit</button>
       <div className="example">
         <h4>Request</h4>
         <code>curl -X GET "${window.location.origin}/paths/new?start=${startWord}&end=${endWord}"</code>

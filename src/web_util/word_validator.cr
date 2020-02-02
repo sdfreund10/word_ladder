@@ -6,8 +6,8 @@ class WordValidator
 
   def initialize(params : HTTP::Params)
     @params = params
-    @start_word = params.fetch("start", "")
-    @end_word = params.fetch("end", "")
+    @start_word = params.fetch("start", "").downcase
+    @end_word = params.fetch("end", "").downcase
     @valid = true
     @status_code = 200
     @message = ""
