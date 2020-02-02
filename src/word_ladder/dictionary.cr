@@ -12,8 +12,11 @@ require "zip"
 
 module WordLadder
   class Dictionary
+    @@english_words : Array(String)
+    @@english_words = File.read("./src/word_ladder/words/words.txt").split
+
     def self.english_words
-      File.read("./src/word_ladder/words/words.txt").split
+      @@english_words
     end
   
     def self.words_with_size(size : Int32)

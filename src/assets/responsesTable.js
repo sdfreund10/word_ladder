@@ -4,46 +4,22 @@ import { Fragment } from 'preact';
 function ResponsesTable() {
   return html`
     <${Fragment}>
-      <h4 id="response">Responses</h4>
-      <table>
-        <thead>
-          <tr>
-            <th>Status</th>
-            <th>Description</th>
-            <th>Example</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>200</td>
-            <td>One or more chains were found. Will return an array of arrays or strings</td>
-            <td>
-              { data: [], status: 200 }
-            </td>
-          </tr>
-          <tr>
-            <td>400</td>
-            <td>
-              Result when no path between provided words can be found.
-              In this case, the words were valid but they have no solution.
-            </td>
-            <td>
-              No valid path between words
-            </td>
-          </tr>
-          <tr>
-            <td>406</td>
-            <td>
-              Result when one or both of the provided words cannot be used,
-              either because it is not a valid word,
-              or because they have a different number of characters
-            </td>
-            <td>
-              Invalid arguments
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <code>GET /paths/new?start=ruby&end=cool</code>
+      <h4>Response</h4>
+      <code>
+        Status: 200
+      </code>
+      <div className="break" />
+      <code>
+        ${'{'}<br />
+        ${'  status: 200,'}<br />
+        ${'  data: ['}<br />
+        ${'    ["ruby","rubs","cubs","cobs","coos","cool"],'}<br />
+        ${'    ["ruby","rubs","robs","cobs","coos","cool"],'}<br />
+        ${'    ["ruby","rubs","robs","roos","coos","cool"],'}<br />
+        ${'  ]'}<br />
+        ${'}'}
+      </code>
     </${Fragment}>
   `;
 }

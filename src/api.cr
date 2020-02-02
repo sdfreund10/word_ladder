@@ -1,5 +1,6 @@
 require "./word_ladder"
 require "./web_util/cache"
+require "./web_util/word_validator"
 require "kemal"
 require "json"
 
@@ -18,20 +19,17 @@ get "/paths/new" do |request|
   response = request.response
   response.content_type = "application/json"
 
-  unless query_params.has_key?("start") && query_params.has_key?("end")
-    response.status_code = 406
-    next("Invalid arguments")
-  end
+  validator = WordValidator.new(query_params)
 
+  if !validator.valid
+    response.status_code = validator.status_code
+    next(validator.message)
+  end
+    
   start_word = query_params["start"]
   end_word = query_params["end"]
-
-  if start_word.size != end_word.size
-    response.status_code = 406
-    next("Invalid arguments")
-  end
-
   cache_key = [start_word, end_word]
+
   paths = CACHE.pull(cache_key) do
     WordLadder::PathFinder.new(start_word, end_word).paths
   end
